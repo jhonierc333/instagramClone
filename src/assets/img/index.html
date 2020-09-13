@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="">
+
+<head>
+    <meta charset="utf-8">
+    <title>Example Title</title>
+    <meta name="author" content="Your Name">
+    <meta name="description" content="Example description">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="">
+    <link rel="icon" type="image/x-icon" href="" />
+</head>
+
+<body>
+    <img id="img" src="https:/i.blogs.es/9638f5/osete/450_1000.jpg" alt="osito jejejeej" />
+    <img id="base" src="" />
+    <script>
+        function toDataURL(url, callback) {
+            var xhr = new XMLHttpRequest();
+            xhr.onload = function() {
+                var reader = new FileReader();
+                reader.onloadend = function() {
+                    callback(reader.result);
+                }
+                reader.readAsDataURL(xhr.response);
+            };
+            xhr.open('GET', url);
+            xhr.responseType = 'blob';
+            xhr.send();
+        }
+        var imagen = document.getElementById('img').src;
+
+        toDataURL('https://static.nationalgeographicla.com/files/styles/image_3200/public/grizzly-bear_01.adapt_.1900.1.jpg?w=1900&h=1261', function(dataUrl) {
+            console.log('RESULT:', dataUrl)
+            document.getElementById('base').src = dataUrl;
+        })
+
+    </script>
+</body>
+
+</html>

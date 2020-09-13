@@ -1,0 +1,68 @@
+<app-nav-bar>
+
+
+</app-nav-bar>
+
+
+<div class="container mt-5  justify-content-center">
+    <div class="" style="margin-top: 6em;">
+        <div class="col-sm-8 row">
+
+            <div class="col-sm-4 d-flex justify-content-center">
+                <img src="{{baseUrl}}/{{dataUser.iduser}}/{{dataUser.image}}" alt="" class="rounded-circle" width="180px" height="180px">
+            </div>
+
+            <div class="col-sm-8">
+                <h1>
+                    {{dataUser.nickname}} | <i class="fas fa-cog" [matMenuTriggerFor]="menu"></i>
+                    <mat-menu #menu="matMenu">
+                        <button [routerLink]="['/userEdit']" mat-menu-item>                
+                          <span>Editar Perfil</span>
+                        </button>
+                        <button [routerLink]="['/changePassword']" mat-menu-item>                
+                            <span>Cambiar Contraseña</span>
+                          </button>
+                    </mat-menu>
+                </h1>
+                <ul>
+                    <li>
+                        <h4> {{dataUser.fullname}} </h4>
+                    </li>
+                    <li>
+                        <h4> {{dataUser.email}} </h4>
+                    </li>
+                    <li>
+                        <h4> {{dataUser.birthdate}}</h4>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <hr>
+    </div>
+
+    <div class="container" id="user-posts">
+        <div class="row mt-3">
+            <!-- *ngFor="let post of listPost" -->
+            <div *ngFor="let post of listPost" class="col-sm-4 pt-5 pb-5 pr-5 pl-5 d-flex justify-content-center align-items-center">
+                <ul>
+                    <i class="fas fa-cog" [matMenuTriggerFor]="menuDos"></i>
+                    <img src="{{baseUrlPost}}/{{post.idpost}}/{{post.image}}" class="img-fluid">
+
+
+                    <mat-menu #menuDos="matMenu">
+                        <button [routerLink]="['/createPost', post]" mat-menu-item>                
+                          <span>Editar publicación</span>
+                        </button>
+                        <button (click)="eliminarPost(post)" mat-menu-item>                
+                            <span>Eliminar Publicación</span>
+                          </button>
+                    </mat-menu>
+
+                    <h3 class="mr-auto"> {{post.description}} </h3>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+
+</div>
